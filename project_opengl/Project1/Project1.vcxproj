@@ -129,12 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\glad.c" />
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="Loadimage.cpp" />
     <ClCompile Include="LoadShader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Libraries\Include\stb_image.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="Loadimage.h" />
     <ClInclude Include="LoadShader.h" />
     <ClInclude Include="resource.h" />

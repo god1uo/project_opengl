@@ -2,7 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-LoadShader::LoadShader(const char* vertexPath, const char* fragmentPath):m_image(std::string("../texture1.jpg"),std::string("../texture2.jpg"))
+LoadShader::LoadShader(const char* vertexPath, const char* fragmentPath)
 {
 	// 1. 从文件路径中获取顶点/片段着色器
 	std::string vertexCode;
@@ -89,11 +89,7 @@ LoadShader::~LoadShader() {
 }
 
 void LoadShader::use() {
-
 	glUseProgram(m_ID);
-	glUniform1i(glGetUniformLocation(m_ID, "Textrue1"), 0);
-	glUniform1i(glGetUniformLocation(m_ID, "Textrue2"), 1);
-	//glUniform1i(vertexColorLocation, image.Gettextrue());
 }
 
 void LoadShader::setBool(const std::string &name, bool value) const
@@ -109,4 +105,16 @@ void LoadShader::setInt(const std::string &name, int value) const
 void LoadShader::setFloat(const std::string &name, float value) const
 {
 	glUniform1f(glGetUniformLocation(m_ID, name.c_str()), value);
+}
+
+void LoadShader::setVec3(const std::string& name, glm::vec3 value) const{
+	glUniform3f(glGetUniformLocation(m_ID, name.c_str()), value.x, value.y, value.z);
+}
+
+void LoadShader::setVec3(const std::string& name, float value1, float value2, float value3) const {
+	glUniform3f(glGetUniformLocation(m_ID, name.c_str()), value1, value2, value3);
+}
+
+void LoadShader::setMat4(const std::string& name, int num, bool isnorm, glm::mat4 mat) const{
+	glUniformMatrix4fv(glGetUniformLocation(m_ID, name.c_str()), num, isnorm, glm::value_ptr(mat));
 }
